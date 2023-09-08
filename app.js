@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost/birthCertificates', {
 });
 
 // Routes
-const certificatesRouter = require('./src/routes/certificates');
+const certificatesRouter = require('./src/routes/certificates.js');
 
 //starting server
 app.listen(PORT, () => {

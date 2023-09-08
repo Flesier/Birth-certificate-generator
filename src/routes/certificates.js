@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const BirthCertificate = require('.src/models/birthCertificate');
-const generatePDF = require('../utils/pdfGenerator');
+const birthCertificate = require('../models/birthCertificate.js');
+const generatePDF = require('../utils/pdfGenerator.js');
 
 // create a birth certficate
 router.post(
