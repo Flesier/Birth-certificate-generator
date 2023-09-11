@@ -21,4 +21,4 @@ const birthCertificate = new mongoose.Schema({
     // will add more fields if needed
 });
 
-module.exports = mongoose.model('birthCertificate', birthCertificate);
+//module.exports = mongoose.model('birthCertificate', birthCertificate);
