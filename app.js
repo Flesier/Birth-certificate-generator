@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const BirthCertificate = require('./src/models/birthCertificate');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,16 +28,18 @@ const birthCertificateSchema = new mongoose.Schema({
     collection: 'birthCertificates',
 });
 
-const BirthCertificate = mongoose.models.BirthCertificate || mongoose.model('BirthCertificate', birthCertificateSchema);
+module.exports = BirthCertificate;
 
 
-app.get("/getusers", (req, res) => {
-    BirthCertificate.find({}).then(function(users) {
-        res.json(users);
-    }).catch(function(err) {
+app.get('/getbirthcertificates', async (req, res) => {
+    try {
+        const birthCertificates = await BirthCertificate.find();
+        res.send(birthCertificates);
+    } catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Sever Error' });
-    });
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+
 });
 
 
@@ -46,6 +49,6 @@ app.use('/certificates', certificatesRouter);
 
 
 //starting server
-app.listen(3001, () => {
-    console.log(`Server is running on port ${3001}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

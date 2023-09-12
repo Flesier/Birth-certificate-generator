@@ -1,7 +1,7 @@
 //data model for the birth certificate using mongoose
 const mongoose = require('mongoose');
 
-const birthCertificate = new mongoose.Schema({
+const birthCertificateSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -17,8 +17,9 @@ const birthCertificate = new mongoose.Schema({
     maidenName: {
         type: String,
         required: true,
-    },
-    // will add more fields if needed
+    }, 
+}, {
+  collection: 'birthCertificates', 
 });
 
-//module.exports = mongoose.model('birthCertificate', birthCertificate);
+const BirthCertificate = mongoose.model('BirthCertificate', birthCertificateSchema);
