@@ -19,17 +19,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/birthcertificate', {
     process.exit();
 });
 
-const birthCertificateSchema = new mongoose.Schema({
-    name: String,
-    dateOfBirth: String,
-    placeOfBirth: String,
-    maidenName: String
-}, {
-    collection: 'birthCertificates',
-});
-
-module.exports = BirthCertificate;
-
 
 app.get('/getbirthcertificates', async (req, res) => {
     try {
@@ -44,8 +33,8 @@ app.get('/getbirthcertificates', async (req, res) => {
 
 
 // Routes
-const certificatesRouter = require('./src/routes/certificates.js');
-app.use('/certificates', certificatesRouter);
+//const certificatesRouter = require('./src/routes/certificates.js');
+//app.use('/certificates', certificatesRouter);
 
 
 //starting server

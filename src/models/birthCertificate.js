@@ -19,7 +19,8 @@ const birthCertificateSchema = new mongoose.Schema({
         required: true,
     }, 
 }, {
-  collection: 'birthCertificates', 
+  collection: 'birthcertificates', 
 });
 
 const BirthCertificate = mongoose.model('BirthCertificate', birthCertificateSchema);
+module.exports = BirthCertificate;
