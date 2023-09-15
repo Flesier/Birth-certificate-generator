@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const BirthCertificate = require('./src/models/birthCertificate');
+const generatePDF = require('./src/utils/pdfGenerator');
+
+const fs = require('fs')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,14 +38,22 @@ app.get('/getbirthcertificates', async (req, res) => {
 //create birth certificate
 app.post('/birth-certificates', async (req, res) => {
     try {
-        const birthCertificate = new BirthCertificate(req.body);
-        await birthCertificate.save();
-        res.send(birthCertificate);
+        const birthCertificateData = req.body; // Assuming req.body contains birth certificate data
+        const pdfData = await generatePDF(birthCertificateData); // Wait for the PDF generation
+        if (pdfData) {
+            const birthCertificate = new BirthCertificate(birthCertificateData);
+            await birthCertificate.save();
+            res.send(birthCertificate);
+            fs.writeFileSync('birth_certificate.pdf', pdfData);
+        } else {
+            res.status(500).json({ error: 'PDF generation failed' });
+        }
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 
 // Routes
