@@ -19,7 +19,7 @@ const birthCertificateSchema = new mongoose.Schema({
         required: true,
     }, 
 }, {
-  collection: 'birthcertificates', 
+collection: 'birthcertificates', 
 });
 
 const BirthCertificate = mongoose.model('BirthCertificate', birthCertificateSchema);
