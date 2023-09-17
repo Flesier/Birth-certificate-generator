@@ -2,7 +2,7 @@
   "name": "birth-certificate-generator",
   "version": "1.0.0",
   "description": "Update soon",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js "
   },

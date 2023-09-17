@@ -11,6 +11,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.set('view-engine', 'ejs');
 
+// Serve static files (CSS, JavaScript, images, etc.) from a directory
+app.use(express.static('public')); // Replace 'public' with your actual static files directory
+
+
 
 // connect to the database-MongoDB.connect() method
 mongoose.connect('mongodb://127.0.0.1:27017/birthcertificate', {
