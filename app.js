@@ -9,9 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.set('view-engine', 'ejs');
 
 
-// connect to the database-MongoDB
+// connect to the database-MongoDB.connect() method
 mongoose.connect('mongodb://127.0.0.1:27017/birthcertificate', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -20,6 +21,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/birthcertificate', {
 }).catch((err) => {
     console.log('Cannot connect to the database!', err);
     process.exit();
+});
+
+app.get('/', (req, res) => {
+    res.render('index.ejs');
 });
 
 //retrieve birth certificates
