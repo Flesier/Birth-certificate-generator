@@ -27,8 +27,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/birthcertificate', {
     process.exit();
 });
 
+//render homepage
 app.get('/', (req, res) => {
     res.render('index.ejs');
+});
+
+//render form page when clicked
+app.get('/form', (req, res) => {
+    res.render('form.ejs');
 });
 
 //retrieve birth certificates

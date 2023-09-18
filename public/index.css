@@ -48,6 +48,31 @@ body{
     border-radius: 0.5rem;
     cursor: pointer;
 }
+form {
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--dark-green);
+    color: var(--baby-tone);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.feature{
+    color: var(--baby-tone);
+}
+.feature h3{
+    color: 
+    rgb(162, 162, 240) !important;
+}
 @media screen and (min-width: 768px) {
     .px-8{
         padding-left: 7rem !important;
