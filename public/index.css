@@ -73,6 +73,15 @@ section{
     color: 
     rgb(162, 162, 240) !important;
 }
+footer{
+    background-color: var(--dark-green);
+    color: var(--baby-tone) !important;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 @media screen and (min-width: 768px) {
     .px-8{
         padding-left: 7rem !important;

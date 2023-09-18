@@ -54,6 +54,7 @@ app.get('/getbirthcertificates', async (req, res) => {
 app.post('/birth-certificates', async (req, res) => {
     try {
         const birthCertificateData = req.body; // Assuming req.body contains birth certificate data
+        
         const pdfData = await generatePDF(birthCertificateData); // Wait for the PDF generation
         if (pdfData) {
             const birthCertificate = new BirthCertificate(birthCertificateData);
