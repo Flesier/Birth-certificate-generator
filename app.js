@@ -3,10 +3,25 @@ const mongoose = require('mongoose');
 const BirthCertificate = require('./src/models/birthCertificate');
 const generatePDF = require('./src/utils/pdfGenerator');
 
+require('dotenv').config();
 const fs = require('fs')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+//Oauth 
+const { auth, requiresAuth } = require('express-openid-connect');
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.SECRET,
+    baseURL: process.env.BASEURL,
+    clientID: process.env.CLIENTID,
+    issuerBaseURL: process.env.ISSUER,
+  };
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+  
 
 app.use(express.json());
 app.set('view-engine', 'ejs');
@@ -29,11 +44,17 @@ mongoose.connect('mongodb://127.0.0.1:27017/birthcertificate', {
 
 //render homepage
 app.get('/', (req, res) => {
+    console.log(req.oidc.isAuthenticated());
     res.render('index.ejs');
 });
 
+
+//authentication inorder to login users and connect to our form
+
+
+
 //render form page when clicked
-app.get('/form', (req, res) => {
+app.get('/form', requiresAuth(), (req, res) => {
     res.render('form.ejs');
 });
 
