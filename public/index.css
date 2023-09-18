@@ -48,7 +48,9 @@ body{
     border-radius: 0.5rem;
     cursor: pointer;
 }
-.px-8{
-    padding-left: 7rem !important;
-    padding-right: 7rem !important;
+@media screen and (min-width: 768px) {
+    .px-8{
+        padding-left: 7rem !important;
+        padding-right: 7rem !important;
+    }
 }
