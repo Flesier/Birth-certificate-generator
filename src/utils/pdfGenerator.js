@@ -20,10 +20,13 @@ function generatePDF(birthCertificate) {
     });
     doc.on('end', () => {
         const pdfData = Buffer.concat(pdfBuffer);
+        return pdfData;
     });
 
-
-    return pdfData;
+    
+    // Return null if the 'end' event has not yet fired (asynchronous)
+    return null;
+  
 }
 
 module.exports = generatePDF;
