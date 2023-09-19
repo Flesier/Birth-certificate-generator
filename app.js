@@ -74,20 +74,20 @@ app.get('/getbirthcertificates', async (req, res) => {
 //create birth certificate
 app.post('/birth-certificates', async (req, res) => {
     try {
-        const birthCertificateData = req.body; // Assuming req.body contains birth certificate data
-        console.log(birthCertificateData);
-        const pdfData = await generatePDF(birthCertificateData); // Wait for the PDF generation
-        console.log(pdfData);
+        const birthCertificateData = req.body;
+        const pdfData = await generatePDF(birthCertificateData);
+
         if (pdfData) {
             const birthCertificate = new BirthCertificate(birthCertificateData);
             await birthCertificate.save();
-            res.send(birthCertificate);
-            fs.writeFileSync('birth_certificate.pdf', pdfData);
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', 'attachment; filename=birth_certificate.pdf');
+            res.send(pdfData);
         } else {
             res.status(500).json({ error: 'PDF generation failed' });
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
